@@ -1,0 +1,42 @@
+<div class= "container text-center bubble col-form-label">
+
+<h2>Signup</h2>
+
+<form action="/signup" method="POST" id="form-container">
+  <label for="firstName">First Name</label>
+  <input id="firstName" type="text" name="firstName" placeholder="Martin">
+  <br><br>
+
+  <label for="lastName">Last Name</label>
+  <input id="lastName" type="text" name="lastName" placeholder="Lawrence">
+  <br><br>
+
+
+  <label for="email">Email</label>
+  <input id="email" type="text" name="email" placeholder="IloveGina@gmail.com">
+  <br><br>
+
+  <label for="preferredName">Preferred Name</label>
+  <input id="preferredName" type="text" name="preferredName" placeholder="Mr. Lawrence">
+  <br><br>
+
+  <label for="userName">User Name</label>
+  <input id="userName`" type="text" name="userName" placeholder="WZUP@gmail.com">
+  <br><br>
+
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Create account</button>
+
+  <p class="account-message">
+    Do you already have an account?
+    <a href="/login">Login</a>
+  </p>
+</form>
+</div>

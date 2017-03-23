@@ -1,0 +1,21 @@
+<div class="bubble text-center containter-fluid">
+<h1>Log In </h1>
+
+<% if (errorMessage.length > 0) { %>
+  <p class="error"> <%= errorMessage %> </p>
+<% } %>
+
+<form action="/login" method="POST">
+  <div>
+    <label for="userName">Username:</label>
+    <input type="text" name="userName">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </div>
+  <div>
+    <input type="submit" value="Log In">
+  </div>
+</form>
+</div>
