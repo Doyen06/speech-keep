@@ -1,0 +1,11 @@
+<h2> class view <h2>
+
+<div class="bubble">
+  <% sections.forEach((section)=>{%>
+    <p><%= section.sectionName %></p>
+
+  <button onclick="window.location='/section/<%=section._id%>/new-student';"> Add Student </button>
+
+  <%})%>
+
+</div>

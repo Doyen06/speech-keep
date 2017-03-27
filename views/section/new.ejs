@@ -1,0 +1,25 @@
+<div class="bubble">
+
+  <h1> Add New Class</h1>
+
+<% if (message.length > 0) { %>
+  <p class="success"> <%= message %> </p>
+<% } %>
+
+<form action="/section" method="post">
+  <div>
+    <label for="department"> Department </label>
+    <input id="department" type="text" name="department">
+  </div>
+
+  <div>
+    <label for="className"> Class Name </label>
+    <input id="className" type="text" name="sectionName">
+  </div>
+
+
+<button onclick="window.location='/section';">Add Class</button>
+</form>
+<button onclick="window.location='/section/index';"> Class List </button>
+
+</div>

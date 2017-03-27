@@ -2,10 +2,20 @@
 
 <% if (successMessage.length > 0) {%>
   <p class="success"> <%=successMessage %></p>
-
 <% } %>
 
 <p> Welcome <%=user.preferredName%>!</p>
-<p>
+</div>
+
+<div class="bubble center-text">
+  <h3> Class Dashboard </h3>
+  <button onclick="window.location='/section/new';"> Add New Class </button>
+
+</div>
+
+<div class='bubble'>
+<% section.forEach((section)=>{ %>
+  <p><%= section.sectionName %></p>
+    <%}) %>
 
 </div>

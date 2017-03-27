@@ -1,11 +1,11 @@
 <div class="bubble text-center containter-fluid">
-<h1>Log In </h1>
+<h1>Student </h1>
 
 <% if (errorMessage.length > 0) { %>
   <p class="error"> <%= errorMessage %> </p>
 <% } %>
 
-<form action="/login" method="POST">
+<form action="/studentLogin" method="POST">
   <div>
     <label for="username">Username:</label>
     <input type="text" name="username">

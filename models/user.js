@@ -5,7 +5,7 @@ userSchema = new Schema({
   firstName: String,
   lastName: String,
   preferredName: String,
-  userName: String,
+  username: String,
   password: String,
   email: String,
   photo: String,

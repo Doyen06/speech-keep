@@ -14,7 +14,8 @@ const dotenv       = require('dotenv');
 const passport     = require('passport');
 
 const User         = require('./models/user');
-
+const Section      = require('./models/section');
+const Student      = require('./models/student');
 
 dotenv.config();
 mongoose.connect('mongodb://localhost/speech-keep');
@@ -57,20 +58,23 @@ app.use((req, res, next) => {
   next();
 });
 
-passport.use(new LocalStrategy((user, password, next) => {
+passport.use(new LocalStrategy((username, password, next) => {
 
-  User.findOne({ user }, (err, user) => {
+  User.findOne({ username }, (err, user) => {
     if (err) {
       return next(err);
     }
-    if (!user) {
-      return next(null, false, { message: "Incorrect email" });
+    else if (!user) {
+      return next(null, false, { message: "Incorrect username" });
     }
-    if (!bcrypt.compareSync(password, user.password)) {
+    else if (!bcrypt.compareSync(password, user.password)) {
       return next(null, false, { message: "Incorrect password" });
     }
+    else {
+      next(null, user);
+    }
 
-    return next(null, user);
+
   });
 }));
 
@@ -80,7 +84,7 @@ passport.serializeUser((user, cb) => {
     cb(null, user);
   }else{
   cb(null, user._id);
-}
+  }
 });
 
 //if I do not have everything saved, how do I get the rest
@@ -98,6 +102,16 @@ passport.deserializeUser((id, cb) => {
     });
 });
 
+//save user middleware
+app.use((req, res, next) => {
+  console.log(req.isAuthenticated());
+  if (req.isAuthenticated()){
+    res.locals.user= req.user;
+  }else{
+    res.locals.user = null;
+  }
+  next();
+});
 //routes
 
 //const user = require('./routes/user');
@@ -109,8 +123,14 @@ app.use('/', index);
 const authRoutes = require('./routes/auth-routes.js');
 app.use('/', authRoutes);
 
+const classRoutes = require('./routes/section.js');
+app.use('/', classRoutes);
+
 const profileRoutes = require('./routes/profile-routes.js');
 app.use('/', profileRoutes);
+
+const studentAuthRoutes = require('./routes/student-new.js');
+app.use('/', studentAuthRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
