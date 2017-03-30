@@ -1,21 +1,31 @@
-<div class="bubble">
 
+<div class="row">
+  <div class="col-md-4"></div>
+<div class="bubble text-center container col-md-4">
 <% if (successMessage.length > 0) {%>
   <p class="success"> <%=successMessage %></p>
 <% } %>
-
-<p> Welcome <%=user.preferredName%>!</p>
+<h3> Welcome <%=user.preferredName%>!</h3>
+</div>
+  <div class="col-md-4"></div>
 </div>
 
-<div class="bubble center-text">
-  <h3> Class Dashboard </h3>
+<div class="row">
+  <div class="col-md-4"></div>
+<div class="bubble text-center container col-md-4">
+  <h3> Class Admin Dashboard </h3>
   <button onclick="window.location='/section/new';"> Add New Class </button>
-
+</div>
+<div class="col-md-4"></div>
 </div>
 
-<div class='bubble'>
+<div class="row">
+  <div class="col-md-4"></div>
+<div class='bubble text-center container col-md-4'>
+    <h3> <%=user.preferredName%>'s Classes </h3>
 <% section.forEach((section)=>{ %>
   <p><%= section.sectionName %></p>
-    <%}) %>
-
+<button onclick="window.location='http://localhost:4200/section/<%=section.id%>'"> Class </button>
+<%}) %>
+</div>
 </div>

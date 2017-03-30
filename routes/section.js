@@ -27,6 +27,7 @@ sectionRoutes.get('/section',
 
 sectionRoutes.get('/section/view',
   ensure.ensureLoggedIn(), (req, res, next)=>{
+    let sectionInfo = req.params.id;
     Section.find((err, sectionInfo)=>{
       if(err){
         next(err);
@@ -55,21 +56,11 @@ sectionRoutes.post('/section',
       if(err){ return next(err); }
       else {
         req.flash('success', 'Your class has been created');
-        res.redirect("/section");
+        res.redirect("/teacher");
       }
     });
   });
 
-sectionRoutes.get('/section/:id', ensure.ensureLoggedIn(), (req, res, next)=>{
-  let sectionId = req.params.id;
-  Students.find({section: sectionId}, (err, students)=>{
-    if (err){return next(err);}
-    console.log(students);
-    res.render('section/view', {
-      students: students
-    });
-  });
-});
 
 sectionRoutes.get('/section/:id/edit', ensure.ensureLoggedIn(),
   (req, res, next)=>{

@@ -12,13 +12,14 @@ const LocalStrategy= require('passport-local').Strategy;
 const flash        = require('connect-flash');
 const dotenv       = require('dotenv');
 const passport     = require('passport');
+const cors         = require('cors');
 
 const User         = require('./models/user');
 const Section      = require('./models/section');
 const Student      = require('./models/student');
 
 dotenv.config();
-mongoose.connect('mongodb://localhost/speech-keep');
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
+app.use(cors());
 
 app.use(session({
   secret: "this better work",
@@ -119,6 +121,9 @@ app.use((req, res, next) => {
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const videoApi = require('./routes/api/video');
+app.use('/', videoApi);
 
 const authRoutes = require('./routes/auth-routes.js');
 app.use('/', authRoutes);

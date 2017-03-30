@@ -4,6 +4,12 @@ const Schema   = mongoose.Schema;
 sectionSchema = new Schema({
   department: String,
   sectionName:  String,
+  assignmentName: String,
+  video: [{
+    link: String,
+    
+    comments: [String]
+  }],
 
   teacher: {type: Schema.Types.ObjectId, ref: 'User'}
 });

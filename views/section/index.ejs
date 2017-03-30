@@ -3,7 +3,8 @@
   <% section.forEach((section)=>{ %>
     <p><%= section.sectionName %></p>
 
-<button onclick="window.location='/section/view';"> Class </button>
+<button onclick="window.location='/section/<%=section.id%>;"> Class </button>
+
   <%}) %>
 
   </div>
